@@ -1,9 +1,14 @@
 package br.pro.hashi.ensino.desagil.lucianogic.model;
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import java.net.URL;
+
 public abstract class Calculator {
 	protected Gate gate;
 	protected String name;
 	protected int inputsize;
-	protected LED led= new LED(255, 0, 0);
+	protected LED led = new LED(255, 0, 0);
 
 	// O menu mostra a string devolvida por esse metodo.
 	public String toString() {
@@ -14,6 +19,7 @@ public abstract class Calculator {
 		this.led= new LED(red, green, blue);
 		this.led.connect(gate, 0);
 	}
-
+	
+	public abstract ImageIcon loadIcon();
 	public abstract boolean read(boolean alpha, boolean beta, boolean gamma);
 }
