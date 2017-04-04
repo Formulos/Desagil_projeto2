@@ -3,11 +3,11 @@ public class MuxCalculator extends Calculator{
 	private Switch swt0= new Switch();
 	private Switch swt1= new Switch();
 	private Switch swt2= new Switch();
-	private MuxGate gate= new MuxGate();
 	
 	public MuxCalculator() {
 		name = "MUX";
 		inputsize= 3;
+		gate= new MuxGate();
 		
 		this.gate.doConnect(swt0, 0);
 		this.gate.doConnect(swt1, 1);
@@ -20,6 +20,6 @@ public class MuxCalculator extends Calculator{
 		this.swt1.setOn(beta);
 		this.swt2.setOn(gamma);
 		
-		return this.gate.read();
+		return this.led.isOn();
 	}
 }

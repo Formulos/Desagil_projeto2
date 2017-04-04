@@ -1,11 +1,11 @@
 package br.pro.hashi.ensino.desagil.lucianogic.model;
 public class NotCalculator extends Calculator{
 	private Switch swt0= new Switch();
-	private NotGate gate= new NotGate();
 	
 	public NotCalculator() {
 		name = "NOT";
 		inputsize= 1;
+		gate= new NotGate();
 		
 		this.gate.doConnect(swt0, 0);
 	}
@@ -14,6 +14,6 @@ public class NotCalculator extends Calculator{
 	public boolean read(boolean alpha, boolean beta, boolean gamma) {
 		this.swt0.setOn(alpha);
 		
-		return this.gate.read();
+		return this.led.isOn();
 	}
 }

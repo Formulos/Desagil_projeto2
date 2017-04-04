@@ -1,4 +1,5 @@
 package br.pro.hashi.ensino.desagil.lucianogic.model;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -6,6 +7,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JCheckBox;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
 
 
 
@@ -22,9 +25,11 @@ public class CalculatorView extends JPanel implements MouseListener {
 	private	JCheckBox input0Field;
 	private	JCheckBox input1Field;
 	private	JCheckBox input2Field;
-	private JCheckBox resultField;
+	//private JCheckBox resultField;
+	private JButton resultField;
 
 	private Calculator calculator;
+	private Color color;
 
 
 	public CalculatorView(Calculator calculator) {
@@ -39,7 +44,7 @@ public class CalculatorView extends JPanel implements MouseListener {
 		input0Field = new JCheckBox();
 		input1Field = new JCheckBox();
 		input2Field = new JCheckBox();
-		resultField = new JCheckBox();
+		resultField = new JButton();
 
 		// Esta linha garante que, sempre que o usuario digitar algo
 		// em weightField, o metodo keyPressed abaixo sera chamado.
@@ -47,10 +52,7 @@ public class CalculatorView extends JPanel implements MouseListener {
 		input0Field.addMouseListener(this);
 		input1Field.addMouseListener(this);
 		input2Field.addMouseListener(this);
-
-
-		// Esta linha garante que resultField nao seja digitavel.
-		resultField.setEnabled(false);
+		resultField.addMouseListener(this);
 		
 		if (this.calculator.inputsize < 3){
 			input2Field.setVisible(false);
@@ -83,15 +85,25 @@ public class CalculatorView extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent event) {
-		boolean input0, input1, input2;
+		if (event==null || event.getSource()!=resultField){
+			boolean input0, input1, input2;
+	
+			input0 = input0Field.isSelected();
+			input1 = input1Field.isSelected();
+			input2 = input2Field.isSelected();
+			
+			boolean result = calculator.read(input0, input1, input2);
+			
+			if (calculator.read()):
+				calculator.recolor.color(color.getRed(), color.getGreen(), color.Blue());
+				resultField.setSelected(result);
+		}else{
+			Color color = JColorChooser.showDialog(this, null, null);
 
-		input0 = input0Field.isSelected();
-		input1 = input1Field.isSelected();
-		input2 = input2Field.isSelected();
-		
-		boolean result = calculator.read(input0, input1, input2);
-		
-		resultField.setSelected(result);
+			if(color != null) {
+				resultField.setBackground(color);
+			}
+		}
 		
 	}
 	@Override

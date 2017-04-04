@@ -2,11 +2,11 @@ package br.pro.hashi.ensino.desagil.lucianogic.model;
 public class XorCalculator extends Calculator{
 	private Switch swt0= new Switch();
 	private Switch swt1= new Switch();
-	private XorGate gate= new XorGate();
 	
 	public XorCalculator() {
 		name = "XOR";
 		inputsize= 2;
+		gate= new XorGate();
 		
 		this.gate.doConnect(swt0, 0);
 		this.gate.doConnect(swt1, 1);
@@ -17,6 +17,6 @@ public class XorCalculator extends Calculator{
 		this.swt0.setOn(alpha);
 		this.swt1.setOn(beta);
 		
-		return this.gate.read();
+		return this.led.isOn();
 	}
 }
